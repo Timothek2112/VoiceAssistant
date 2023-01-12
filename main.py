@@ -17,16 +17,6 @@ from pyowm import OWM
 import win32gui, win32con
 import googletrans
 
-try:
-    import win32gui, win32con;
-
-    frgrnd_wndw = win32gui.GetForegroundWindow()
-    wndw_title  = win32gui.GetWindowText(frgrnd_wndw)
-    if wndw_title.endswith("python.exe"):
-        win32gui.ShowWindow(frgrnd_wndw, win32con.SW_HIDE)
-except  :
-    pass
-
 class VoiceAssistant:
     name: str = "негр"
     sex: str = "male"
@@ -151,7 +141,6 @@ class VoiceAssistant:
 
 def get_translation(term):
     google_translator = googletrans.Translator()
-    translation_result = ""
     translation_result = google_translator.translate(term,  
                                                   src="en",  
                                                   dest="ru")  
@@ -184,7 +173,6 @@ def get_weather_forecast(assistant: VoiceAssistant):
         assistant.say(get_translation(weather.detailed_status))
     except Exception as ex:
         print(ex)
-        return
 
 def record_and_recognize():
     with microphone:
